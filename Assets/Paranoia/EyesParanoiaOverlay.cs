@@ -12,6 +12,9 @@ public class EyesParanoiaOverlay : MonoBehaviour
 
     public void Eyes(object sender, ParanoiaArgs args)
     {
-        transform.GetChild(0).gameObject.SetActive(bool.Parse(args.argument));
+        if (args.arguments.Count > 0)
+        {
+            transform.GetChild(0).gameObject.SetActive(bool.Parse(args.arguments[0]));
+        }
     }
 }

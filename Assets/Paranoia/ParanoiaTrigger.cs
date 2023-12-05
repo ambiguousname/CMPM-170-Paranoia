@@ -5,14 +5,19 @@ using UnityEngine;
 public class ParanoiaTrigger : MonoBehaviour
 {
     public string eventName;
-    public string arguments;
+    public List<string> arguments;
 
-    private void OnTriggerEnter(Collider other)
+    protected virtual void Triggered(Collider other)
     {
         if (other.tag == "Player")
         {
             ParanoiaManager.Broadcast(this, new ParanoiaArgs(eventName, arguments));
         }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Triggered(other);
     }
 
     // Update is called once per frame

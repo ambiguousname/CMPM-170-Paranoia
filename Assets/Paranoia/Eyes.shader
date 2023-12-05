@@ -6,7 +6,11 @@ Shader "Unlit/Eyes"
     }
     SubShader
     {
-        Tags { "RenderType"="Opaque" }
+        Tags { "RenderType"="Transparent" "Queue" = "Transparent" }
+        ZWrite Off
+        Blend SrcAlpha
+        OneMinusSrcAlpha
+        Cull back
         LOD 100
 
         Pass
@@ -18,6 +22,7 @@ Shader "Unlit/Eyes"
             #pragma multi_compile_fog
 
             #include "UnityCG.cginc"
+            #include "Packages/jp.keijiro.noiseshader/Shader/ClassicNoise2D.hlsl"
 
             struct appdata
             {
@@ -34,6 +39,7 @@ Shader "Unlit/Eyes"
 
             sampler2D _MainTex;
             float4 _MainTex_ST;
+            float4 _Color;
 
             v2f vert (appdata v)
             {
@@ -50,7 +56,10 @@ Shader "Unlit/Eyes"
                 fixed4 col = tex2D(_MainTex, i.uv);
                 // apply fog
                 UNITY_APPLY_FOG(i.fogCoord, col);
-                return half4(i.uv, 1, 1);
+                float otherNoise = ClassicNoise((i.uv + float2(50.f, 50.f)) * 100.f * (sin(_Time.x/10.f) + 1.f));
+                float noise = ClassicNoise((float2(_Time.x * otherNoise / 100.f, _Time.y/10.0f) + i.uv) * 10.0f);
+                float red = 10.0f * noise * otherNoise;
+                return half4(red * (cos(50.0f * _Time.x) + 0.5f), 0, 0, noise + otherNoise);
 }
             ENDCG
         }

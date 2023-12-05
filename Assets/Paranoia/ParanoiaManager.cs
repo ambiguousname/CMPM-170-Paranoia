@@ -8,9 +8,9 @@ public class ParanoiaArgs : EventArgs
 {
     public string eventName { get; }
 
-    public string argument { get; }
+    public List<string> arguments { get; }
 
-    public ParanoiaArgs(string name, string arg) { eventName = name; argument = arg; }
+    public ParanoiaArgs(string name, List<string> args) { eventName = name; arguments = args; }
 };
 
 public delegate void ParanoiaInstance(object sender, ParanoiaArgs arguments);

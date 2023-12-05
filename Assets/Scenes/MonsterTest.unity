@@ -1420,11 +1420,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1199747556}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 12cbbdedae671ed4ea3903ba369774a9, type: 3}
+  m_Script: {fileID: 11500000, guid: 6eb359880a448e548b80b10aa21c2158, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   eventName: Eyes
-  arguments: true
+  arguments:
+  - true
+  secsToWait: 0.4
+  postTimerEventName: Eyes
+  postTimerEventArgs:
+  - false
 --- !u!4 &1202078865 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4135013735270702856, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
