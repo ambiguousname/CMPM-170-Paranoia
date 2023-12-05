@@ -7,11 +7,15 @@ public class ParanoiaTrigger : MonoBehaviour
     public string eventName;
     public List<string> arguments;
 
+    protected bool wasTriggered = false;
+
     protected virtual void Triggered(Collider other)
     {
+        if (wasTriggered) return;
         if (other.tag == "Player")
         {
             ParanoiaManager.Broadcast(this, new ParanoiaArgs(eventName, arguments));
+            wasTriggered = true;
         }
     }
 

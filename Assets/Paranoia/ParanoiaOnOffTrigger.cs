@@ -12,7 +12,10 @@ public class ParanoiaOnOffTrigger : ParanoiaTrigger
     protected override void Triggered(Collider other)
     {
         base.Triggered(other);
-        StartCoroutine(Timer());
+        if (other.tag == "Player")
+        {
+            StartCoroutine(Timer());
+        }
     }
 
     IEnumerator Timer()
