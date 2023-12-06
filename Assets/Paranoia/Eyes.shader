@@ -59,7 +59,7 @@ Shader "Unlit/Eyes"
                 float otherNoise = ClassicNoise((i.uv + float2(50.f, 50.f)) * 100.f * (sin(_Time.x/10.f) + 1.f));
                 float noise = ClassicNoise((float2(_Time.x * otherNoise / 100.f, _Time.y/10.0f) + i.uv) * 10.0f);
                 float red = 10.0f * noise * otherNoise;
-                return half4(red * (cos(50.0f * _Time.x) + 0.5f), 0, 0, noise + otherNoise);
+                return half4(red * (cos(50.0f * _Time.x) + 0.5f), 0, 0, 1.0f);
 }
             ENDCG
         }
