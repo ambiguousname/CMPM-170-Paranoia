@@ -9,5 +9,7 @@ public class PickupTrigger : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         playerItem.SetActive(true);
+        transform.parent.gameObject.SetActive(false);
+
     }
 }
