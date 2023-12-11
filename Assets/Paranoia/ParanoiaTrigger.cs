@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ParanoiaTrigger : MonoBehaviour
 {
-    public string eventName;
+    public List<string> events;
     public List<string> arguments;
 
     protected bool wasTriggered = false;
@@ -14,7 +14,10 @@ public class ParanoiaTrigger : MonoBehaviour
         if (wasTriggered) return;
         if (other.tag == "Player")
         {
-            ParanoiaManager.Broadcast(this, new ParanoiaArgs(eventName, arguments));
+            foreach (var e in events)
+            {
+                ParanoiaManager.Broadcast(this, new ParanoiaArgs(e, arguments));
+            }
             wasTriggered = true;
         }
     }
