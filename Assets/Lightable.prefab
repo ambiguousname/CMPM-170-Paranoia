@@ -280,3 +280,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95a2709d41d73574fa7c23be83d1a51c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isFake: 0

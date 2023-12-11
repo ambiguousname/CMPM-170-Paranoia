@@ -18,12 +18,39 @@ public class IlluminateTrigger : MonoBehaviour
         lanternMaterial = renderer.material;
         pastEmission = lanternMaterial.GetColor("_EmissionColor");
         lanternMaterial.SetColor("_EmissionColor", Color.black);
+
+        ParanoiaManager.AddParanoiaEvent(transform.parent.name + "Light", Lightable);
+        ParanoiaManager.AddParanoiaEvent(transform.parent.name, Delete);
     }
+
+    private void Delete(object sender, ParanoiaArgs args)
+    {
+        transform.parent.gameObject.SetActive(false);
+    }
+
+    private void Lightable(object sender, ParanoiaArgs args)
+    {
+        bool on = false;
+        if (args.arguments.Count >= 1)
+        {
+            on = bool.Parse(args.arguments[0]);
+        }
+
+        pointLight.enabled = on;
+        if (!on) {
+            lanternMaterial.SetColor("_EmissionColor", Color.black);
+        } else
+        {
+            lanternMaterial.SetColor("_EmissionColor", pastEmission);
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (!isFake) {
             pointLight.enabled = true;
             lanternMaterial.SetColor("_EmissionColor", pastEmission);
+            isFake = true;
         }
     }
 }

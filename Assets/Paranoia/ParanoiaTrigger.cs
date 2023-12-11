@@ -7,7 +7,23 @@ public class ParanoiaTrigger : MonoBehaviour
     public List<string> events;
     public List<string> arguments;
 
-    protected bool wasTriggered = false;
+    public bool wasTriggered = false;
+
+    private void Start()
+    {
+        ParanoiaManager.AddParanoiaEvent(name + "SetTriggered", SetTriggered);
+    }
+
+    void SetTriggered(object sender, ParanoiaArgs args)
+    {
+        bool triggered = false;
+        if (args.arguments.Count >= 1)
+        {
+            triggered = bool.Parse(args.arguments[0]);
+        }
+
+        wasTriggered = triggered;
+    }
 
     protected virtual void Triggered(Collider other)
     {
