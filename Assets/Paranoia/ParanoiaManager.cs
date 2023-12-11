@@ -46,6 +46,7 @@ public class ParanoiaManager : MonoBehaviour
     public static void ResetEvents()
     {
         subscribers.Clear();
+        paranoiaEvent = null;
     }
 
     private void Awake()

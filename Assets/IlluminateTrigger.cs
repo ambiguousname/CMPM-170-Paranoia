@@ -9,6 +9,8 @@ public class IlluminateTrigger : MonoBehaviour
     Material lanternMaterial;
     Color pastEmission;
 
+    public bool isFake = false;
+
     private void Start()
     {
         pointLight = GetComponentInChildren<Light>();
@@ -19,7 +21,9 @@ public class IlluminateTrigger : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        pointLight.enabled = true;
-        lanternMaterial.SetColor("_EmissionColor", pastEmission);
+        if (!isFake) {
+            pointLight.enabled = true;
+            lanternMaterial.SetColor("_EmissionColor", pastEmission);
+        }
     }
 }
