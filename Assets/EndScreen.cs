@@ -1,3 +1,4 @@
+using StarterAssets;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -19,6 +20,7 @@ public class EndScreen : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Y))
         {
+            ParanoiaManager.ResetEvents();
             SceneManager.LoadScene("MonsterTest", LoadSceneMode.Single);
         }
 

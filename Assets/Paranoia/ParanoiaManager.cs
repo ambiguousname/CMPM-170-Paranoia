@@ -43,6 +43,11 @@ public class ParanoiaManager : MonoBehaviour
         paranoiaEvent.Invoke(sender, args);
     }
 
+    public static void ResetEvents()
+    {
+        subscribers.Clear();
+    }
+
     private void Awake()
     {
         paranoiaEvent += EventRecieved;
